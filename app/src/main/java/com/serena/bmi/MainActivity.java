@@ -11,12 +11,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     String s = new String("abc");
-    View.OnClickListener listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +18,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getResources().getString(R.string.app_name);
         Button bHelp = (Button) findViewById(R.id.b_info);
-        bHelp.setOnClickListener(listener);
+        bHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("XXX")
+                    .setMessage("BMI吧啦吧啦吧啦吧啦")
+                    .setPositiveButton("OK",null)
+                    .show();
+            }
+        });
     }
     public void bmi(View view){
 //          System.out.println("what???");
