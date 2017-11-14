@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         float bmi = weight / (height*height);
         Log.d("MainActivity","Your BMI is:"+bmi);
         if(height>3){
-            new AlertDialog.Builder(this).setMessage("身高單位應為公尺").setPositiveButton("OK",null).show();
+            new AlertDialog.Builder(this).setMessage("身高單位應為公尺").setPositiveButton(R.string.OK2,null).show();
         }else{
         if(bmi<20){
         new AlertDialog.Builder(this)
