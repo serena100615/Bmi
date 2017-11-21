@@ -1,5 +1,6 @@
 package com.serena.bmi;
 
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     String s = new String("abc");
+    private EditText edWeight;
+    private EditText edHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +35,17 @@ public class MainActivity extends AppCompatActivity {
     public void bmi(View view){
 //          System.out.println("what???");
         Log.d("MainActivity","testing bmi method");
-        EditText edWeight = (EditText) findViewById(R.id.ed_weight);
-        EditText edHeight = (EditText) findViewById(R.id.ed_height);
+        findViews();
 //        String s = edWeight.getText().toString();
 //        float weight = Float.parseFloat(s);
         float weight = Float.parseFloat(edWeight.getText().toString());
         float height = Float.parseFloat(edHeight.getText().toString());
         float bmi = weight / (height*height);
+
+        Intent intent = new Intent(this,ResultActivity.class);
+        intent.putExtra(getString(R.string.bmi_extra),bmi);
+        startActivity(intent);
+
         Log.d("MainActivity","Your BMI is:"+bmi);
         if(height>3){
             new AlertDialog.Builder(this).setMessage("身高單位應為公尺").setPositiveButton(R.string.OK2,null).show();
@@ -59,7 +66,50 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void findViews() {
+        edWeight = (EditText) findViewById(R.id.ed_weight);
+        edHeight = (EditText) findViewById(R.id.ed_height);
+    }
+
         /*Toast.makeText(this,"Your BMI is "+bmi,Toast. LENGTH_SHORT).show();*/
 
+    public MainActivity() {
+        super();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Toast.makeText(this,"onStart",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Toast.makeText(this,"onStop",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(this,"onDestroy",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Toast.makeText(this,"onPause",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(this,"onResume",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Toast.makeText(this,"onRestart",Toast.LENGTH_LONG).show();
+    }
 }
